@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Profi.DAL;
 using Profi.Models;
 
-namespace Profi.Controllers
+namespace Profi.Areas.AdminPanel.Controllers
 {
+    [Area("AdminPanel")]
     public class TestimonialsController : Controller
     {
         private readonly AppDbContext _context;
@@ -19,13 +20,13 @@ namespace Profi.Controllers
             _context = context;
         }
 
-        // GET: Testimonials
+        // GET: AdminPanel/Testimonials
         public async Task<IActionResult> Index()
         {
             return View(await _context.Testimonials.ToListAsync());
         }
 
-        // GET: Testimonials/Details/5
+        // GET: AdminPanel/Testimonials/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,13 +44,13 @@ namespace Profi.Controllers
             return View(testimonials);
         }
 
-        // GET: Testimonials/Create
+        // GET: AdminPanel/Testimonials/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Testimonials/Create
+        // POST: AdminPanel/Testimonials/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,7 +66,7 @@ namespace Profi.Controllers
             return View(testimonials);
         }
 
-        // GET: Testimonials/Edit/5
+        // GET: AdminPanel/Testimonials/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,7 +82,7 @@ namespace Profi.Controllers
             return View(testimonials);
         }
 
-        // POST: Testimonials/Edit/5
+        // POST: AdminPanel/Testimonials/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -116,7 +117,7 @@ namespace Profi.Controllers
             return View(testimonials);
         }
 
-        // GET: Testimonials/Delete/5
+        // GET: AdminPanel/Testimonials/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +135,7 @@ namespace Profi.Controllers
             return View(testimonials);
         }
 
-        // POST: Testimonials/Delete/5
+        // POST: AdminPanel/Testimonials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

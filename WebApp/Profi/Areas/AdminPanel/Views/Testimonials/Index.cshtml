@@ -6,7 +6,7 @@
 
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-dark">Create New Testimonial</a>
 </p>
 <table class="table">
     <thead>
@@ -26,17 +26,19 @@
             <th>
                 @Html.DisplayNameFor(model => model.Star)
             </th>
-            <th></th>
+            <th>Settings</th>
+            <th>More</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                <a class="text-black"> @Html.DisplayFor(modelItem => item.Name)</a> 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Url)
+                <div class="d-flex align-items-center"><img src=~/Admin/images/@item.Url alt=avatar /></div>
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Theme)
@@ -45,12 +47,33 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Star)
+                <div class=star-rating>
+                    @for (int i = 0; i < item.Star / 2; i++)
+                    {
+                        <i class="mdi mdi-star"></i>
+                    }
+                    @if (item.Star % 2 != 0)
+                    {
+                        <i class="mdi mdi-star-half"></i>
+
+                    }
+                    @if (10 - item.Star != 0)
+                    {
+                        @for (int i = 0; i < (10 - item.Star) / 2; i += 2)
+                        {
+                            <i class="mdi mdi-star-outline"></i>
+                        }
+                    }
+                </div>
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-inverse-warning">Edit <i class="mdi mdi-table-edit"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-inverse-danger">Delete <i class="mdi mdi-delete-sweep"></i></a>
+
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-inverse-info">Details <i class="mdi mdi-more"></i></a>
+
             </td>
         </tr>
 }
